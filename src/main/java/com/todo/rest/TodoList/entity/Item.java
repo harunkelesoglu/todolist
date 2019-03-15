@@ -19,6 +19,6 @@ public class Item {
 
     private TodoStatus status;
 
-    private Long createdTime;
+    private Long createdDate;
 
 }

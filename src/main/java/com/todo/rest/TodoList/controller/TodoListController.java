@@ -29,8 +29,28 @@ public class TodoListController {
     @Autowired
     UserRepository userRepository;
 
+
+    @GetMapping
+    public ResponseEntity<?> getTodoList() {
+        try {
+            String userId = "5c85096ea5b10010a06f94ef";
+            User user = userRepository.findByUserId(userId);
+            ArrayList<TodoList> lists = user.getTodoLists();
+
+            if (lists != null) {
+                return new ResponseEntity<>(lists,HttpStatus.OK);
+            } else {
+                response = ResponseUtil.getInstance().createGenericResponse(false,ServiceMessage.HAVE_NOT_TODOLIST);
+            }
+        } catch (Exception e) {
+            response = ResponseUtil.getInstance().createGenericResponse(false,e.getMessage());
+        }
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+
     @GetMapping("/{todoListId}")
-    public ResponseEntity<?> getTodoList(@PathVariable String todoListId) {
+    public ResponseEntity<?> getTodoListById(@PathVariable String todoListId) {
 
         try {
             TodoList todoList = todoListRepository.findByTodoListId(todoListId);
@@ -52,7 +72,7 @@ public class TodoListController {
 
             User user = userRepository.findByUserId("5c85096ea5b10010a06f94ef");
             ArrayList<TodoList> todoLists = user.getTodoLists();
-            if(todoLists == null){
+            if (todoLists == null) {
                 todoLists = new ArrayList<TodoList>();
             }
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -89,7 +109,6 @@ public class TodoListController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
 
 
 }

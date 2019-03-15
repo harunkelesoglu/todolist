@@ -53,7 +53,7 @@ public class ItemController {
             if (todoList != null) {
                 ArrayList<Item> items = todoList.getItems();
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                item.setCreatedTime(timestamp.getTime());
+                item.setCreatedDate(timestamp.getTime());
                 item = itemRespository.save(item);
                 items.add(item);
                 todoList.setItems(items);

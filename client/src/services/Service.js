@@ -31,8 +31,14 @@ const createTodoList = (data,cb) => {
     axios.post(BASE_URL + '/todolist/create',data).then(cb).catch(e => console.log(e));
 }
 
-const getTodoList = (id,cb) => {
-    axios.get(BASE_URL + '/todolist/' + id).then(cb).catch(e => console.log(e));
+const getTodoList = (cb) => {
+     
+    axios.get(BASE_URL + '/todolist').then(cb).catch(e => console.log(e));
+}
+
+const getTodoListById = (todoListId,cb) => {
+     
+    axios.get(BASE_URL + '/todolist/' + todoListId).then(cb).catch(e => console.log(e));
 }
 
 const deleteTodoList = (id, cb) => {
@@ -41,7 +47,8 @@ const deleteTodoList = (id, cb) => {
 
 /*******   ITEM SERVICE ********/
 const createItem = (todoListId,data,cb) => {
-    axios.post(BASE_URL + '/item/create?todoListId' +todoListId,data).then(cb).catch( e => console.log(e));
+     
+    axios.post(BASE_URL + '/item/create?todoListId=' +todoListId,data).then(cb).catch( e => console.log(e));
 }
 
 const getItem = (todoListId,cb) => {
@@ -54,4 +61,17 @@ const updateItem = (data, cb) => {
 
 const deleteItem = (itemId,cb) => {
     axios.delete(BASE_URL + '/item/' + itemId).then(cb).catch(e => console.log(e));
+}
+
+export {
+    createTodoList,
+    createItem,
+    getTodoList,
+    getTodoListById,
+    getItem,
+    getUser,
+    updateItem,
+    deleteItem,
+    deleteTodoList,
+    register
 }

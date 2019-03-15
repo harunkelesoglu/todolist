@@ -16,6 +16,7 @@ public interface ServiceMessage {
     String TODO_LIST_CREATE_FAIL = "Todo list creation failed";
     String TODO_LIST_NOT_FOUND = "Todo list not found";
     String TODO_LIST_DELETE_SUCCESS = "Todo list deleted";
+    String HAVE_NOT_TODOLIST = "Sorry, you have not list";
 
     String ITEM_CREATE_FAIL = "Item creation failed";
     String ITEM_CREATE_SUCCESS = "Item creation success";
